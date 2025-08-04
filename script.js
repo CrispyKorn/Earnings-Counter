@@ -60,13 +60,15 @@ function setScrollerSpeed()
 {
     const aside = document.querySelector("aside");
     const width = aside.offsetWidth;
+    const height = width * 1.5;
     const t = width / 128;
-    const minSpeed = 5;
-    const maxSpeed = 15;
+    const minSpeed = 2;
+    const maxSpeed = 1;
     const speed = minSpeed * t + maxSpeed * (1 - t);
 
     document.querySelectorAll("aside").forEach((element) => 
     {
         element.style.setProperty("--scroll-speed", `${speed}s`);
+        element.style.setProperty("--scroll-height", `${height}px`);
     });
 }

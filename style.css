@@ -70,7 +70,7 @@ aside {
 
 @keyframes scrollImage {
     from {
-        background-position: 0 100%;
+        background-position: 0 var(--scroll-height);
     }
     to {
         background-position: 0 0;
