@@ -62,9 +62,9 @@ function setScrollerSpeed()
     const width = aside.offsetWidth;
     const height = width * 1.5;
     const t = width / 128;
-    const minSpeed = 2;
-    const maxSpeed = 1;
-    const speed = minSpeed * t + maxSpeed * (1 - t);
+    const largeDuration = 2;
+    const smallDuration = 1;
+    const speed = largeDuration * t + smallDuration * (1 - t);
 
     document.querySelectorAll("aside").forEach((element) => 
     {
