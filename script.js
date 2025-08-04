@@ -6,6 +6,11 @@ let counter = 0;
 let counting = false;
 let duration = 0;
 
+window.onload = () => 
+{
+    setScrollerSpeed();
+};
+
 startButton.addEventListener("mouseover", () => 
 {
     startButton.style.backgroundColor = "#F7B8BE";
@@ -44,4 +49,24 @@ function counterRunner()
 
     duration += 0.01;
     if (counting) setTimeout(counterRunner, 10);
+}
+
+addEventListener("resize", () => 
+{
+    setScrollerSpeed();
+});
+
+function setScrollerSpeed()
+{
+    const aside = document.querySelector("aside");
+    const width = aside.offsetWidth;
+    const t = width / 128;
+    const minSpeed = 5;
+    const maxSpeed = 15;
+    const speed = minSpeed * t + maxSpeed * (1 - t);
+
+    document.querySelectorAll("aside").forEach((element) => 
+    {
+        element.style.setProperty("--scroll-speed", `${speed}s`);
+    });
 }
