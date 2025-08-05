@@ -44,6 +44,13 @@ input {
     flex: 2;
 }
 
+#earnings-amount-value {
+    font-size: 1.5em;
+    align-self: center;
+    flex: 2;
+    display: none;
+}
+
 #earnings-input {
     height: 50px;
     display: flex;
@@ -65,7 +72,7 @@ aside {
     width: min(5%, 128px);
     background-image:url("scroll-texture.png");
     background-size: 100%;
-    animation: scrollImage var(--scroll-speed) linear infinite;
+    animation: scrollImage var(--scroll-duration) linear infinite;
 }
 
 @keyframes scrollImage {

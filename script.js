@@ -1,4 +1,5 @@
-const earningAmount = document.getElementById("earnings-amount");
+const earningAmountInput = document.getElementById("earnings-amount-input");
+const earningAmountValue = document.getElementById("earnings-amount-value");
 const startButton = document.getElementById("start");
 const counterValue = document.getElementById("counter");
 
@@ -9,6 +10,7 @@ let duration = 0;
 window.onload = () => 
 {
     setScrollerSpeed();
+    setScrollerPlayState(false);
 };
 
 startButton.addEventListener("mouseover", () => 
@@ -33,13 +35,17 @@ startButton.addEventListener("mouseup", () =>
 
 startButton.addEventListener("click", () => 
 {
-    earningAmount.disabled = true;
-    counter = earningAmount.value;
+    earningAmountInput.disabled = true;
+    earningAmountInput.style.display = "none";
+    earningAmountValue.innerHTML = `$${earningAmountInput.value}/hr`;
+    earningAmountValue.style.display = "block";
+    counter = earningAmountInput.value;
     counting = !counting;
 
     startButton.innerHTML = counting ? "Stop" : "Start";
 
     if (counting) counterRunner();
+    setScrollerPlayState(counting);
 });
 
 function counterRunner()
@@ -64,11 +70,19 @@ function setScrollerSpeed()
     const t = width / 128;
     const largeDuration = 2;
     const smallDuration = 1;
-    const speed = largeDuration * t + smallDuration * (1 - t);
+    const duration = largeDuration * t + smallDuration * (1 - t);
 
     document.querySelectorAll("aside").forEach((element) => 
     {
-        element.style.setProperty("--scroll-speed", `${speed}s`);
+        element.style.setProperty("--scroll-duration", `${duration}s`);
         element.style.setProperty("--scroll-height", `${height}px`);
+    });
+}
+
+function setScrollerPlayState(playing)
+{
+    document.querySelectorAll("aside").forEach((element) => 
+    {
+        element.style.animationPlayState = playing ? "running" : "paused";
     });
 }
